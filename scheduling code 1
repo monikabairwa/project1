@@ -1,0 +1,70 @@
+// Question 10
+//code 1:
+
+#include<stdio.h>
+//#define PREV_REQ 125
+//no use of prev req in FCFS algo
+#define CURR_REQ 143
+
+int absolute(int num){
+    return num>0?num:(num*-1);
+}
+int main(){
+    int queue[] = {86, 1470, 913, 1774, 948, 1509, 1022, 1750, 130},i,dist=0,last = CURR_REQ;
+
+    for(i=0; i<(sizeof(queue)/sizeof(queue[0]));i++){
+    	int curr = queue[i];
+    	printf("start : %4d | Curr : %4d | distance : %4d\n",last,curr,absolute(last - curr));
+    	dist+= absolute(last - curr);
+    	last = curr;
+    }
+
+    printf("\nDistance : %d\n",dist);
+
+    return 0*printf("\now the pointer have coverd all the destination nodes \n");
+}
+  
+  // QUESTION 17
+  //code 2:
+  
+  //here priority is based on burst time
+#include<conio.h>
+#include<stdio.h>
+int main()
+{
+	int p[5]={1,2,3,4,5};//process
+	int a[5]={1,2,3,4,5};//arrival time
+	int bt[5]={5,4,2,3,1};//burst time
+	int sum=1,i;
+	int q1[10];//que which is based on fixed preemptive scheduling
+	int q2[5];//based on round robin
+	printf("the sequence of priority is \n");
+	printf("p5>p3>p4>p2>p1");
+	q1[0]=p[1];
+	sum=sum+1;
+	printf("\n%d",sum);
+q1[1]=p[2];
+q2[0]=p[1];
+sum=sum+1;//burst time of p1 till 1 sec
+q1[2]=p[3];
+q2[1]=p[2];
+sum=sum+2;//burst time of p2 till 2 sec
+printf("\n%d",sum);
+q1[3]=p[5];
+sum=sum+1;//burst time of p5
+q1[4]=p[4];
+sum=sum+3;//burst time of p4
+q1[5]=p[2];
+sum=sum+3;//burst time of p2 (left)
+q1[6]=p[1];
+sum=sum+4;//left burst time of p1
+for(i=0;i<6;i++)
+{
+	printf("\nthe secquence of level one is %d",q1[i]);
+}
+for(i=0;i<2;i++)
+{
+	printf("\n\tthe secquence of second one is %d",q2[i]);
+}
+printf("\ntotal sum is %d",sum);
+}
